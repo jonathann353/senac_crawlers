@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.securityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
 ]
 
@@ -129,7 +131,10 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [BASE_DIR, 'static']
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_FINDERS = [
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
